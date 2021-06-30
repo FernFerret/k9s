@@ -30,12 +30,13 @@ k9s:
   dialog:
     fgColor: *foreground
     bgColor: default
-    buttonFgColor: *foreground
-    buttonBgColor: *magenta
+    buttonFgColor: *magenta
+    buttonBgColor: *background
     buttonFocusFgColor: *yellow
     buttonFocusBgColor: *blue
     labelFgColor: *orange
     fieldFgColor: *foreground
+    titleFgColor: *foreground
   frame:
     # Borders styles.
     border:

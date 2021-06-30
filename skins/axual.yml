@@ -31,10 +31,11 @@ k9s:
     bgColor: *blue
     buttonFgColor: *yellow
     buttonBgColor: *blue
-    buttonFocusFgColor: *grey
-    buttonFocusBgColor: *light
+    buttonFocusFgColor: *blue
+    buttonFocusBgColor: *yellow
     labelFgColor: *grey
     fieldFgColor: *light
+    titleFgColor: *yellow
 
   # Frame styles
   frame:

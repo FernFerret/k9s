@@ -13,12 +13,14 @@ k9s:
   dialog:
     fgColor: dodgerblue
     bgColor: black
-    buttonFgColor: black
-    buttonBgColor: dodgerblue
+    buttonFgColor: dodgerblue
+    buttonBgColor: black
     buttonFocusFgColor: white
-    buttonFocusBgColor: fuchsia
+    buttonFocusBgColor: dodgerblue
     labelFgColor: fuchsia
     fieldFgColor: dodgerblue
+    # fieldBgColor: "#222222"
+    titleFgColor: aqua
   frame:
     border:
       fgColor: dodgerblue

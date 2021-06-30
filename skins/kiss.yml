@@ -20,6 +20,7 @@ k9s:
     buttonFocusBgColor: default
     labelFgColor: default
     fieldFgColor: default
+    titleFgColor: default
   frame:
     border:
       fgColor: default

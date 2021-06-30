@@ -33,6 +33,7 @@ k9s:
     buttonFocusBgColor: *white
     labelFgColor: *ghost
     fieldFgColor: *white
+    titleFgColor: *fg
   frame:
     border:
       fgColor: *fg

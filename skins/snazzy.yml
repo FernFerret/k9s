@@ -19,6 +19,7 @@ k9s:
     buttonFocusBgColor: "#5af78e"
     labelFgColor: "#97979b"
     fieldFgColor: "#5af78e"
+    titleFgColor: "#5af78e"
   frame:
     border:
       fgColor: "#5af78e"

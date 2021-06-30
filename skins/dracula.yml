@@ -33,11 +33,15 @@ k9s:
     fgColor: *foreground
     bgColor: *background
     buttonFgColor: *foreground
-    buttonBgColor: *purple
-    buttonFocusFgColor: *yellow
+    buttonBgColor: *current_line
+    buttonFocusFgColor: *background
     buttonFocusBgColor: *pink
     labelFgColor: *orange
     fieldFgColor: *foreground
+    titleFgColor: *foreground
+  prompt:
+    filterBorder: *pink
+    cmdBorder: *purple
   frame:
     # Borders styles.
     border:

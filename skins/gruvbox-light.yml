@@ -33,11 +33,12 @@ k9s:
     fgColor: *foreground
     bgColor: *background
     buttonFgColor: *foreground
-    buttonBgColor: *magenta
+    buttonBgColor: *comment
     buttonFocusFgColor: white
     buttonFocusBgColor: *cyan
     labelFgColor: *orange
     fieldFgColor: *foreground
+    titleFgColor: *foreground
   frame:
     border:
       fgColor: *selection

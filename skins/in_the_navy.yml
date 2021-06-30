@@ -34,11 +34,12 @@ k9s:
     fgColor: *fg
     bgColor: *bg
     buttonFgColor: *fg
-    buttonBgColor: *powder
+    buttonBgColor: *alice
     buttonFocusFgColor: white
-    buttonFocusBgColor: *aqua
+    buttonFocusBgColor: *fg
     labelFgColor: *mslate
     fieldFgColor: *fg
+    titleFgColor: *fg
   frame:
     border:
       fgColor: *fg

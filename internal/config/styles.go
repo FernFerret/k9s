@@ -76,6 +76,8 @@ type (
 		ButtonFocusBgColor Color `yaml:"buttonFocusBgColor"`
 		LabelFgColor       Color `yaml:"labelFgColor"`
 		FieldFgColor       Color `yaml:"fieldFgColor"`
+		FieldBgColor       Color `yaml:"fieldBgColor"`
+		TitleFgColor       Color `yaml:"titleFgColor"`
 	}
 
 	// Frame tracks frame styles.
@@ -239,6 +241,11 @@ func (c Color) Color() tcell.Color {
 		return tcell.ColorDefault
 	}
 
+	// Return tview's representation of the special transparent color.
+	if c == TransparentColor {
+		return tview.ColorTransparent
+	}
+
 	return tcell.GetColor(string(c)).TrueColor()
 }
 
@@ -249,6 +256,23 @@ func (c Colors) Colors() []tcell.Color {
 		cc = append(cc, color.Color())
 	}
 	return cc
+}
+
+// ModalStyleOpts converts our Dialog into a tview.ModalStyleOpts to pass into
+// tview functions.
+func (d Dialog) ModalStyleOpts() *tview.ModalStyleOpts {
+	return &tview.ModalStyleOpts{
+		FgColor:            d.FgColor.Color(),
+		BgColor:            d.BgColor.Color(),
+		ButtonFgColor:      d.ButtonFgColor.Color(),
+		ButtonBgColor:      d.ButtonBgColor.Color(),
+		ButtonFocusFgColor: d.ButtonFocusFgColor.Color(),
+		ButtonFocusBgColor: d.ButtonFocusBgColor.Color(),
+		LabelFgColor:       d.LabelFgColor.Color(),
+		FieldFgColor:       d.FieldFgColor.Color(),
+		FieldBgColor:       d.FieldBgColor.Color(),
+		TitleFgColor:       d.TitleFgColor.Color(),
+	}
 }
 
 func newStyle() Style {
@@ -273,6 +297,8 @@ func newDialog() Dialog {
 		ButtonFocusFgColor: "black",
 		LabelFgColor:       "white",
 		FieldFgColor:       "white",
+		FieldBgColor:       "-",
+		TitleFgColor:       "aqua",
 	}
 }
 
@@ -375,7 +401,7 @@ func newYaml() Yaml {
 func newTitle() Title {
 	return Title{
 		FgColor:        "aqua",
-		BgColor:        "black",
+		BgColor:        "default",
 		HighlightColor: "fuchsia",
 		CounterColor:   "papayawhip",
 		FilterColor:    "seagreen",
@@ -568,6 +594,8 @@ func (s *Styles) Update() {
 	tview.Styles.TertiaryTextColor = s.FgColor()
 	tview.Styles.InverseTextColor = s.FgColor()
 	tview.Styles.ContrastSecondaryTextColor = s.FgColor()
+
+	tview.SetModalStyle(s.Dialog().ModalStyleOpts())
 
 	s.fireStylesChanged()
 }

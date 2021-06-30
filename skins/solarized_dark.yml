@@ -27,11 +27,12 @@ k9s:
     fgColor: *foreground
     bgColor: *background
     buttonFgColor: *foreground
-    buttonBgColor: *magenta
+    buttonBgColor: *current_line
     buttonFocusFgColor: white
-    buttonFocusBgColor: *cyan
+    buttonFocusBgColor: *magenta
     labelFgColor: *orange
     fieldFgColor: *foreground
+    titleFgColor: *foreground
   frame:
     border:
       fgColor: *selection

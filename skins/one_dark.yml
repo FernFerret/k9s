@@ -24,14 +24,15 @@ k9s:
     fgColor: *grey
     sectionColor: *green
   dialog:
-    fgColor: *black
+    fgColor: *foreground
     bgColor: *background
-    buttonFgColor: *foreground
-    buttonBgColor: *green
+    buttonFgColor: *green
+    buttonBgColor: *background
     buttonFocusFgColor: *black
     buttonFocusBgColor: *blue
     labelFgColor: *orange
     fieldFgColor: *blue
+    titleFgColor: *blue
   frame:
     border:
       fgColor: *green

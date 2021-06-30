@@ -1,7 +1,8 @@
 # monokai.yml
 # Styles...
 foreground: &foreground "#ffffff"
-background: &background "default"
+# background: &background "default"
+background: &background "#000000"
 backgroundOpaque: &backgroundOpaque "#333333"
 magenta: &magenta "#f72972"
 orange: &orange "#e47c20"
@@ -31,12 +32,13 @@ k9s:
   dialog:
     fgColor: *foreground
     bgColor: *background
-    buttonFgColor: *foreground
-    buttonBgColor: *green
+    buttonFgColor: *blue
+    buttonBgColor: *background
     buttonFocusFgColor: *foreground
     buttonFocusBgColor: *darkBlue
     labelFgColor: *orange
     fieldFgColor: *blue
+    titleFgColor: *foreground
   frame:
     # Borders styles.
     border:
