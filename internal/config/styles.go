@@ -241,11 +241,6 @@ func (c Color) Color() tcell.Color {
 		return tcell.ColorDefault
 	}
 
-	// Return tview's representation of the special transparent color.
-	if c == TransparentColor {
-		return tview.ColorTransparent
-	}
-
 	return tcell.GetColor(string(c)).TrueColor()
 }
 
@@ -297,7 +292,7 @@ func newDialog() Dialog {
 		ButtonFocusFgColor: "black",
 		LabelFgColor:       "white",
 		FieldFgColor:       "white",
-		FieldBgColor:       "-",
+		FieldBgColor:       "default",
 		TitleFgColor:       "aqua",
 	}
 }
