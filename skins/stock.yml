@@ -19,7 +19,6 @@ k9s:
     buttonFocusBgColor: dodgerblue
     labelFgColor: fuchsia
     fieldFgColor: dodgerblue
-    # fieldBgColor: "#222222"
     titleFgColor: aqua
   frame:
     border:

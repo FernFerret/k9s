@@ -132,6 +132,7 @@ func (c *CronJob) showSuspendDialog(sel string) {
 	confirm.SetDoneFunc(func(int, string) {
 		c.dismissDialog()
 	})
+	confirm.SetStyle(c.App().Styles.Dialog().ModalStyleOpts())
 	c.App().Content.AddPage(suspendDialogKey, confirm, false, false)
 	c.App().Content.ShowPage(suspendDialogKey)
 }
@@ -178,11 +179,7 @@ func (c *CronJob) toggleSuspend(ctx context.Context, path string) error {
 func (c *CronJob) makeStyledForm() *tview.Form {
 	f := tview.NewForm()
 	f.SetItemPadding(0)
-	f.SetButtonsAlign(tview.AlignCenter).
-		SetButtonBackgroundColor(tview.Styles.PrimitiveBackgroundColor).
-		SetButtonTextColor(tview.Styles.PrimaryTextColor).
-		SetLabelColor(tcell.ColorAqua).
-		SetFieldTextColor(tcell.ColorOrange)
+	f.SetButtonsAlign(tview.AlignCenter)
 
 	return f
 }

@@ -18,16 +18,9 @@ type PortForwardCB func(v ResourceViewer, path, co string, mapper []client.PortT
 
 // ShowPortForwards pops a port forwarding configuration dialog.
 func ShowPortForwards(v ResourceViewer, path string, ports []string, okFn PortForwardCB) {
-	styles := v.App().Styles.Dialog()
-
 	f := tview.NewForm()
 	f.SetItemPadding(0)
-	f.SetButtonsAlign(tview.AlignCenter).
-		SetButtonBackgroundColor(styles.ButtonBgColor.Color()).
-		SetButtonTextColor(styles.ButtonFgColor.Color()).
-		SetLabelColor(styles.LabelFgColor.Color()).
-		SetFieldTextColor(styles.FieldFgColor.Color()).
-		SetFieldBackgroundColor(styles.BgColor.Color())
+	f.SetButtonsAlign(tview.AlignCenter)
 
 	address := v.App().Config.CurrentCluster().PortForwardAddress
 
@@ -45,14 +38,6 @@ func ShowPortForwards(v ResourceViewer, path string, ports []string, okFn PortFo
 	f.AddInputField("Address:", address, 30, nil, func(h string) {
 		address = h
 	})
-	for i := 0; i < 3; i++ {
-		field, ok := f.GetFormItem(i).(*tview.InputField)
-		if !ok {
-			continue
-		}
-		field.SetLabelColor(styles.LabelFgColor.Color())
-		field.SetFieldTextColor(styles.FieldFgColor.Color())
-	}
 
 	f.AddButton("OK", func() {
 		pp1 := strings.Split(p1, ",")
@@ -75,14 +60,6 @@ func ShowPortForwards(v ResourceViewer, path string, ports []string, okFn PortFo
 	f.AddButton("Cancel", func() {
 		DismissPortForwards(v, pages)
 	})
-	for i := 0; i < 2; i++ {
-		b := f.GetButton(i)
-		if b == nil {
-			continue
-		}
-		b.SetBackgroundColorActivated(styles.ButtonFocusBgColor.Color())
-		b.SetLabelColorActivated(styles.ButtonFocusFgColor.Color())
-	}
 
 	modal := tview.NewModalForm(fmt.Sprintf("<PortForward on %s>", path), f)
 
@@ -90,11 +67,10 @@ func ShowPortForwards(v ResourceViewer, path string, ports []string, okFn PortFo
 		modal.SetText("Exposed Ports: " + strings.Join(ports, ","))
 	}
 
-	modal.SetTextColor(styles.FgColor.Color())
-	modal.SetBackgroundColor(styles.BgColor.Color())
 	modal.SetDoneFunc(func(_ int, b string) {
 		DismissPortForwards(v, pages)
 	})
+	modal.SetStyle(v.App().Styles.Dialog().ModalStyleOpts())
 
 	pages.AddPage(portForwardKey, modal, false, true)
 	pages.ShowPage(portForwardKey)

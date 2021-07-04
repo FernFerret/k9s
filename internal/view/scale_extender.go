@@ -59,6 +59,7 @@ func (s *ScaleExtender) showScaleDialog(path string) {
 	confirm.SetDoneFunc(func(int, string) {
 		s.dismissDialog()
 	})
+	confirm.SetStyle(s.App().Styles.Dialog().ModalStyleOpts())
 	s.App().Content.AddPage(scaleDialogKey, confirm, false, false)
 	s.App().Content.ShowPage(scaleDialogKey)
 }
@@ -121,11 +122,7 @@ func (s *ScaleExtender) dismissDialog() {
 func (s *ScaleExtender) makeStyledForm() *tview.Form {
 	f := tview.NewForm()
 	f.SetItemPadding(0)
-	f.SetButtonsAlign(tview.AlignCenter).
-		SetButtonBackgroundColor(tview.Styles.PrimitiveBackgroundColor).
-		SetButtonTextColor(tview.Styles.PrimaryTextColor).
-		SetLabelColor(tcell.ColorAqua).
-		SetFieldTextColor(tcell.ColorOrange)
+	f.SetButtonsAlign(tview.AlignCenter)
 
 	return f
 }

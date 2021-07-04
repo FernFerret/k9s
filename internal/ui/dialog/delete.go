@@ -18,11 +18,7 @@ func ShowDelete(styles config.Dialog, pages *ui.Pages, msg string, ok okFunc, ca
 	cascade, force := true, false
 	f := tview.NewForm()
 	f.SetItemPadding(0)
-	f.SetButtonsAlign(tview.AlignCenter).
-		SetButtonBackgroundColor(styles.ButtonBgColor.Color()).
-		SetButtonTextColor(styles.ButtonFgColor.Color()).
-		SetLabelColor(styles.LabelFgColor.Color()).
-		SetFieldTextColor(styles.FieldFgColor.Color())
+	f.SetButtonsAlign(tview.AlignCenter)
 	f.AddCheckbox("Cascade:", cascade, func(checked bool) {
 		cascade = checked
 	})
@@ -38,14 +34,6 @@ func ShowDelete(styles config.Dialog, pages *ui.Pages, msg string, ok okFunc, ca
 		dismissDelete(pages)
 		cancel()
 	})
-	for i := 0; i < 2; i++ {
-		b := f.GetButton(i)
-		if b == nil {
-			continue
-		}
-		b.SetBackgroundColorActivated(styles.ButtonFocusBgColor.Color())
-		b.SetLabelColorActivated(styles.ButtonFocusFgColor.Color())
-	}
 	f.SetFocus(2)
 
 	confirm := tview.NewModalForm("<Delete>", f)
@@ -54,6 +42,7 @@ func ShowDelete(styles config.Dialog, pages *ui.Pages, msg string, ok okFunc, ca
 		dismissDelete(pages)
 		cancel()
 	})
+	confirm.SetStyle(styles.ModalStyleOpts())
 	pages.AddPage(deleteKey, confirm, false, false)
 	pages.ShowPage(deleteKey)
 }

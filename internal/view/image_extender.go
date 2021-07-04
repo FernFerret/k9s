@@ -87,6 +87,7 @@ func (s *ImageExtender) showImageDialog(path string) error {
 	confirm.SetDoneFunc(func(int, string) {
 		s.dismissDialog()
 	})
+	confirm.SetStyle(s.App().Styles.Dialog().ModalStyleOpts())
 	s.App().Content.AddPage(imageKey, confirm, false, false)
 	s.App().Content.ShowPage(imageKey)
 
@@ -144,11 +145,7 @@ func (s *ImageExtender) dismissDialog() {
 func (s *ImageExtender) makeStyledForm() *tview.Form {
 	f := tview.NewForm()
 	f.SetItemPadding(0)
-	f.SetButtonsAlign(tview.AlignCenter).
-		SetButtonBackgroundColor(tview.Styles.PrimitiveBackgroundColor).
-		SetButtonTextColor(tview.Styles.PrimaryTextColor).
-		SetLabelColor(tcell.ColorAqua).
-		SetFieldTextColor(tcell.ColorOrange)
+	f.SetButtonsAlign(tview.AlignCenter)
 	return f
 }
 

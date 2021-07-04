@@ -16,15 +16,9 @@ type DrainFunc func(v ResourceViewer, path string, opts dao.DrainOptions)
 
 // ShowDrain pops a node drain dialog.
 func ShowDrain(view ResourceViewer, path string, defaults dao.DrainOptions, okFn DrainFunc) {
-	styles := view.App().Styles
-
 	f := tview.NewForm()
 	f.SetItemPadding(0)
-	f.SetButtonsAlign(tview.AlignCenter).
-		SetButtonBackgroundColor(styles.BgColor()).
-		SetButtonTextColor(styles.FgColor()).
-		SetLabelColor(styles.K9s.Info.FgColor.Color()).
-		SetFieldTextColor(styles.K9s.Info.SectionColor.Color())
+	f.SetButtonsAlign(tview.AlignCenter)
 
 	var opts dao.DrainOptions
 	f.AddInputField("GracePeriod:", strconv.Itoa(defaults.GracePeriodSeconds), 0, nil, func(v string) {
@@ -69,6 +63,7 @@ func ShowDrain(view ResourceViewer, path string, defaults dao.DrainOptions, okFn
 	modal.SetDoneFunc(func(_ int, b string) {
 		DismissDrain(view, pages)
 	})
+	modal.SetStyle(view.App().Styles.Dialog().ModalStyleOpts())
 
 	pages.AddPage(drainKey, modal, false, true)
 	pages.ShowPage(drainKey)

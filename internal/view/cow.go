@@ -37,7 +37,7 @@ func (c *Cow) Init(_ context.Context) error {
 	c.SetScrollable(true).SetWrap(true).SetRegions(true)
 	c.SetDynamicColors(true)
 	c.SetHighlightColor(tcell.ColorOrange)
-	c.SetTitleColor(tcell.ColorAqua)
+	c.SetTitleColor(c.app.Styles.Title().FgColor.Color())
 	c.SetInputCapture(c.keyboard)
 	c.SetBorderPadding(0, 0, 1, 1)
 	c.updateTitle()

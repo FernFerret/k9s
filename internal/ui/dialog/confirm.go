@@ -16,11 +16,7 @@ type (
 func ShowConfirm(styles config.Dialog, pages *ui.Pages, title, msg string, ack confirmFunc, cancel cancelFunc) {
 	f := tview.NewForm()
 	f.SetItemPadding(0)
-	f.SetButtonsAlign(tview.AlignCenter).
-		SetButtonBackgroundColor(styles.ButtonBgColor.Color()).
-		SetButtonTextColor(styles.ButtonFgColor.Color()).
-		SetLabelColor(styles.LabelFgColor.Color()).
-		SetFieldTextColor(styles.FieldFgColor.Color())
+	f.SetButtonsAlign(tview.AlignCenter)
 	f.AddButton("Cancel", func() {
 		dismissConfirm(pages)
 		cancel()
@@ -30,22 +26,14 @@ func ShowConfirm(styles config.Dialog, pages *ui.Pages, title, msg string, ack c
 		dismissConfirm(pages)
 		cancel()
 	})
-	for i := 0; i < 2; i++ {
-		b := f.GetButton(i)
-		if b == nil {
-			continue
-		}
-		b.SetBackgroundColorActivated(styles.ButtonFocusBgColor.Color())
-		b.SetLabelColorActivated(styles.ButtonFocusFgColor.Color())
-	}
 	f.SetFocus(0)
 	modal := tview.NewModalForm("<"+title+">", f)
 	modal.SetText(msg)
-	modal.SetTextColor(styles.FgColor.Color())
 	modal.SetDoneFunc(func(int, string) {
 		dismissConfirm(pages)
 		cancel()
 	})
+	modal.SetStyle(styles.ModalStyleOpts())
 	pages.AddPage(confirmKey, modal, false, false)
 	pages.ShowPage(confirmKey)
 }

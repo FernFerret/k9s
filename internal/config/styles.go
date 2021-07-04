@@ -253,8 +253,8 @@ func (c Colors) Colors() []tcell.Color {
 	return cc
 }
 
-// ModalStyleOpts converts our Dialog into a tview.ModalStyleOpts to pass into
-// tview functions.
+// ModalStyleOpts converts a Dialog into a tview.ModalStyleOpts that can be sent
+// to tview functions.
 func (d Dialog) ModalStyleOpts() *tview.ModalStyleOpts {
 	return &tview.ModalStyleOpts{
 		FgColor:            d.FgColor.Color(),
@@ -589,8 +589,6 @@ func (s *Styles) Update() {
 	tview.Styles.TertiaryTextColor = s.FgColor()
 	tview.Styles.InverseTextColor = s.FgColor()
 	tview.Styles.ContrastSecondaryTextColor = s.FgColor()
-
-	tview.SetModalStyle(s.Dialog().ModalStyleOpts())
 
 	s.fireStylesChanged()
 }
